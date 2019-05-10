@@ -1,5 +1,5 @@
 # Update the apt packages and get a couple of basic tools
-sudo apt-get update
+sudo apt-get update -y
 sudo apt-get install unzip curl vim jq -y 
 # make an archive folder to move old binaries into
 sudo mkdir /tmp/archive/
@@ -14,7 +14,7 @@ sudo add-apt-repository \
       "deb [arch=amd64] https://download.docker.com/linux/ubuntu \
       $(lsb_release -cs) \
       stable"
-sudo apt-get update
+sudo apt-get update -y
 sudo apt-get install -y docker-ce
 sudo service docker restart
 # Configure Docker to be run as the vagrant user
@@ -33,8 +33,6 @@ sudo mkdir -p /etc/nomad.d
 sudo chmod a+w /etc/nomad.d
 sudo cp /vagrant/nomad-server.hcl /etc/nomad.d/
 
-# Uncommend the first and comment the second line to get the latest edition of Nomad 
-# Otherwise use the static number
 echo "Consul install starting..."
 # Uncommend the first and comment the second line to get the latest edition 
 # Otherwise use the static number
