@@ -24,11 +24,18 @@ There are a few things you need to get this going:
 
 * Run a `vagrant up` command and watch the magic happen! (spoiler alert: it's not magic, it's technology)
 
+* Each node will be running Consul and Nomad with services set to launch at startup
+
 ## Interacting with the Nomad and Consul cluster
 
+Logging into the systems locally can be done 
 
 * You can use some simple commands to get started 
 ```
 nomad node status
+```
+* To open the Nomad UI use this command on your local machine
+```
+open http://172.16.1.101:4646
 ```
 
