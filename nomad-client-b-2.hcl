@@ -1,6 +1,6 @@
 data_dir = "/tmp/nomad/client"
 
-datacenter = "DC1"
+datacenter = "DC2"
 
 client {
     enabled = true
@@ -17,4 +17,10 @@ ports {
 
 addresses {
     http = "{{ GetInterfaceIP `eth1` }}"
+}
+
+server_join {
+  retry_join = [ "172.16.1.201", "172.16.1.203" ]
+  retry_max = 3
+  retry_interval = "15s"
 }

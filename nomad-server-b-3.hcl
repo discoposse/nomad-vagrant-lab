@@ -16,3 +16,9 @@ plugin "raw_exec" {
     enabled = true
   }
 }
+
+server_join {
+  retry_join = [ "172.16.1.201", "172.16.1.202" ]
+  retry_max = 3
+  retry_interval = "15s"
+}

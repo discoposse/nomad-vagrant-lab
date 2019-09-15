@@ -24,7 +24,7 @@ sudo docker --version
 
 echo "Nomad Install Beginning..."
 # For now we use a static version. Set to the latest tested version you want here.
-NOMAD_VERSION=0.9.1
+NOMAD_VERSION=0.9.5
 cd /tmp/
 sudo curl -sSL https://releases.hashicorp.com/nomad/${NOMAD_VERSION}/nomad_${NOMAD_VERSION}_linux_amd64.zip -o nomad.zip
 sudo unzip nomad.zip
