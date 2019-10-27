@@ -5,7 +5,7 @@ job "helloapp" {
 	# region = "global"
 
 	# Specify the datacenters within the region this job can run in.
-	datacenters = ["dc1"]
+	datacenters = ["toronto","vancouver"]
 
 	# Service type jobs optimize for long-lived services. This is
 	# the default but we can change to batch for short-lived tasks.

@@ -1,5 +1,5 @@
 job "fabio" {
-  datacenters = ["dc1"]
+  datacenters = ["toronto"]
   type = "system"
   update {
     stagger = "5s"

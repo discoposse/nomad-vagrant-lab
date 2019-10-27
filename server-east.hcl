@@ -3,7 +3,12 @@ data_dir = "/tmp/nomad/server"
 server {
     enabled = true
     bootstrap_expect = 3
+    job_gc_threshold = "2m"
 }
+
+datacenter = "toronto"
+
+region = "east"
 
 advertise {
     http = "{{ GetInterfaceIP `eth1` }}"
@@ -17,8 +22,7 @@ plugin "raw_exec" {
   }
 }
 
-server_join {
-  retry_join = [ "172.16.1.101", 172.16.1.102", "172.16.1.103" ]
-  retry_max = 3
-  retry_interval = "15s"
+client {
+    enabled = true
+    network_interface = "eth1"
 }
