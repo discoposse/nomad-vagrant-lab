@@ -55,12 +55,3 @@ do
 done
 nomad -autocomplete-install
 
-# Start all the things 
-#echo Starting Nomad
-#cd ~
-#sudo nohup nomad agent -config /etc/nomad.d/nomad-server.hcl &>nomad.log  &
-
-#echo Starting Consul
-#sudo nohup consul agent -config-file /etc/consul.d/consul-server.hcl &>consul.log  &
-
-#nomad agent -config nomad-client.hcl
