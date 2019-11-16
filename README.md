@@ -16,7 +16,10 @@ There are a few things you need to get this going:
 
 * VirtualBox
 
-## How to use the Nomad lab configuraiton
+## How to use the Nomad lab configuration
+
+### For 3-node clusters you must rename `Vagrantfile.3node` to `Vagrantfile`
+### For 6-node (two region) clusters you must rename `Vagrantfile.6node` to `Vagrantfile`
 
 * Clone this repo (or fork it of you so desire and want to contribute to it)
 
