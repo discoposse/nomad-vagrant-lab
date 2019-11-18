@@ -20,15 +20,4 @@ Vagrant.configure(2) do |config|
     end
   end
 
-  # 3-node configuration - Region B
-  (1..3).each do |i|
-    config.vm.define "nomad-b-#{i}" do |n|
-      if i == 1
-        # Expose the nomad ports
-        n.vm.network "forwarded_port", guest: 4646, host: 4646, auto_correct: true
-      end
-      n.vm.hostname = "nomad-b-#{i}"
-      n.vm.network "private_network", ip: "172.16.1.#{i+200}"
-    end
-  end
 end

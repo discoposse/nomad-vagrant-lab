@@ -45,7 +45,7 @@ sudo install consul /usr/bin/consul
 sudo mv /tmp/consul /tmp/archive/consul 
 sudo mkdir -p /etc/consul.d
 sudo chmod a+w /etc/consul.d 
-sudo cp /vagrant/consul-server.hcl /etc/consul.d/
+# sudo cp /vagrant/consul-server.hcl /etc/consul.d/
 
 for bin in cfssl cfssl-certinfo cfssljson
 do
