@@ -1,7 +1,7 @@
 #!/bin/bash
 # Update the apt packages and get a couple of basic tools
 sudo apt-get update -y
-sudo apt-get install unzip curl vim jq -y 
+sudo apt-get install unzip curl vim jq -y
 # make an archive folder to move old binaries into
 sudo mkdir /tmp/archive/
 
@@ -29,22 +29,22 @@ cd /tmp/
 sudo curl -sSL https://releases.hashicorp.com/nomad/${NOMAD_VERSION}/nomad_${NOMAD_VERSION}_linux_amd64.zip -o nomad.zip
 sudo unzip nomad.zip
 sudo install nomad /usr/bin/nomad
-sudo mv /tmp/nomad /tmp/archive/nomad 
+sudo mv /tmp/nomad /tmp/archive/nomad
 sudo mkdir -p /etc/nomad.d
 sudo chmod a+w /etc/nomad.d
-sudo cp /vagrant/server-east.hcl /etc/nomad.d/
+sudo cp /vagrant/nomad-config/nomad-server-east.hcl /etc/nomad.d/
 
 echo "Consul Install Beginning..."
-# Uncommend the first and comment the second line to get the latest edition 
+# Uncommend the first and comment the second line to get the latest edition
 # Otherwise use the static number
 CONSUL_VERSION=$(curl -s https://checkpoint-api.hashicorp.com/v1/check/consul | jq -r ".current_version")
 #CONSUL_VERSION=1.4.0
 sudo curl -sSL https://releases.hashicorp.com/consul/${CONSUL_VERSION}/consul_${CONSUL_VERSION}_linux_amd64.zip > consul.zip
 sudo unzip /tmp/consul.zip
 sudo install consul /usr/bin/consul
-sudo mv /tmp/consul /tmp/archive/consul 
+sudo mv /tmp/consul /tmp/archive/consul
 sudo mkdir -p /etc/consul.d
-sudo chmod a+w /etc/consul.d 
+sudo chmod a+w /etc/consul.d
 sudo cp /vagrant/consul-config/consul-server-east.hcl /etc/consul.d/
 
 for bin in cfssl cfssl-certinfo cfssljson
@@ -54,4 +54,3 @@ do
   sudo install /tmp/${bin} /usr/local/bin/${bin}
 done
 nomad -autocomplete-install
-
