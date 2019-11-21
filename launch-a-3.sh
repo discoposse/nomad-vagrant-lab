@@ -1,11 +1,9 @@
 #!/bin/bash
 
-# Start all the things 
-echo Starting Nomad using Server + Client file
-cd ~
-cp /vagrant/server-east.hcl /etc/nomad.d/nomad-server-a-3.hcl
-sudo nohup nomad agent -config /etc/nomad.d/nomad-server-a-3.hcl &>nomad.log  &
+# Form Consul Cluster
+sudo killall consul
+sudo consul agent --config-file /etc/consul.d/consul-server-east.hcl &
 
-echo Joining cluster
-cd ~
-nomad server join 172.16.1.101 &
+# Form Nomad Cluster
+sudo killall nomad
+sudo nomad agent -config /etc/nomad.d/nomad-server-east.hcl &
