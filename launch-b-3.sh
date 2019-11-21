@@ -1,4 +1,4 @@
-#!/bin/bash:wq
+#!/bin/bash
 
 # Start all the things 
 echo Starting Nomad using Server + Client file
@@ -8,4 +8,4 @@ sudo nohup nomad agent -config /etc/nomad.d/nomad-server-b-3.hcl &>nomad.log  &
 
 echo Joining cluster
 cd ~
-sudo nohup nomad server join 172.16.1.201
+nomad server join 172.16.1.201 &

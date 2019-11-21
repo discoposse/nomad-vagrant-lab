@@ -1,4 +1,4 @@
-#!/bin/bash:wq
+#!/bin/bash
 
 # Start all the things 
 echo Starting Nomad using Server + Client file
