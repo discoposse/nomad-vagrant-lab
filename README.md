@@ -1,5 +1,8 @@
 # HashiCorp Nomad - Local Lab Using Vagrant
 
+### Accompanying blog for the initial setup:  https://discoposse.com/2019/11/21/building-a-hashicorp-nomad-cluster-lab-using-vagrant-and-virtualbox/
+### Pluralsight course - Getting Started with HashiCorp Nomad:  https://app.pluralsight.com/library/courses/hashicorp-nomad-getting-started/table-of-contents
+
 ## What is this?
 
 A simple 3-node or 6-node lab running Ubuntu servers on VirtualBox and each node runs Consul and Nomad servers which can be configured as a cluster.
