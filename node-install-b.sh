@@ -3,7 +3,9 @@
 sudo apt-get update -y
 sudo apt-get install unzip curl vim jq -y
 # make an archive folder to move old binaries into
-sudo mkdir /tmp/archive/
+if [ ! -d /tmp/archive ]; then
+  sudo mkdir /tmp/archive/
+fi
 
 # Install Docker Community Edition
 echo "Docker Install Beginning..."
@@ -27,8 +29,15 @@ echo "Nomad Install Beginning..."
 NOMAD_VERSION=0.9.5
 cd /tmp/
 sudo curl -sSL https://releases.hashicorp.com/nomad/${NOMAD_VERSION}/nomad_${NOMAD_VERSION}_linux_amd64.zip -o nomad.zip
-sudo unzip nomad.zip
-sudo install nomad /usr/bin/nomad
+if [ ! -d nomad ]; then
+  sudo unzip nomad.zip
+fi
+if [ ! -f /usr/bin/nomad ]; then
+  sudo install nomad /usr/bin/nomad
+fi
+if [ -f /tmp/archive/nomad ]; then
+  sudo rm /tmp/archive/nomad
+fi
 sudo mv /tmp/nomad /tmp/archive/nomad
 sudo mkdir -p /etc/nomad.d
 sudo chmod a+w /etc/nomad.d
@@ -40,8 +49,15 @@ echo "Consul Install Beginning..."
 CONSUL_VERSION=$(curl -s https://checkpoint-api.hashicorp.com/v1/check/consul | jq -r ".current_version")
 #CONSUL_VERSION=1.4.0
 sudo curl -sSL https://releases.hashicorp.com/consul/${CONSUL_VERSION}/consul_${CONSUL_VERSION}_linux_amd64.zip > consul.zip
-sudo unzip /tmp/consul.zip
-sudo install consul /usr/bin/consul
+if [ ! -d consul ]; then
+  sudo unzip /tmp/consul.zip
+fi
+if [ ! -f /usr/bin/consul ]; then
+  sudo install consul /usr/bin/consul
+fi
+if [ -f /tmp/archive/consul ]; then
+  sudo rm /tmp/archive/consul
+fi
 sudo mv /tmp/consul /tmp/archive/consul
 sudo mkdir -p /etc/consul.d
 sudo chmod a+w /etc/consul.d
@@ -50,7 +66,15 @@ sudo cp /vagrant/consul-config/consul-server-west.hcl /etc/consul.d/
 for bin in cfssl cfssl-certinfo cfssljson
 do
   echo "$bin Install Beginning..."
-  curl -sSL https://pkg.cfssl.org/R1.2/${bin}_linux-amd64 > /tmp/${bin}
-  sudo install /tmp/${bin} /usr/local/bin/${bin}
+  if [ ! -f /tmp/${bin} ]; then
+    curl -sSL https://pkg.cfssl.org/R1.2/${bin}_linux-amd64 > /tmp/${bin}
+  fi
+  if [ ! -f /usr/local/bin/${bin} ]; then
+    sudo install /tmp/${bin} /usr/local/bin/${bin}
+  fi
 done
-nomad -autocomplete-install
+cat /root/.bashrc | grep  "complete -C /usr/bin/nomad nomad"
+retval=$?
+if [ $retval -eq 1 ]; then
+  nomad -autocomplete-install
+fi
